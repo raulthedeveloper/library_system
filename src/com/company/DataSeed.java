@@ -36,9 +36,11 @@ public class DataSeed {
         return patronList;
     }
 
-    public void AddPatron(Patron patron)
+    public void AddPatron(String first, String last)
     {
-        patronList.add(patron);
+        // Add id dynamically
+        int id = (patronList.size() - 1) + 1;
+        patronList.add(new Patron(id,first,last,LocalDate.now()));
     }
 
     public void DeletePatron(int id)
@@ -57,12 +59,15 @@ public class DataSeed {
 
     }
 
+    public ArrayList<Patron> GetPatrons()
+    {
+        return patronList;
+    }
+
     public void CheckoutBooks(int[] id)
     {
         //Will change selected books checkout boolean to true (accessed by book id)
-        for (int i = 0; i < id.length; i++){
 
-        }
     }
 
     public void CheckInBooks(Books[] books)

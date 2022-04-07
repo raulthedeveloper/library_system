@@ -20,6 +20,10 @@ public class Patron implements IPatron {
         MemberSince = memberSince;
     }
 
+    public int getId() {
+        return Id;
+    }
+
     public String getFirstName() {
         return FirstName;
     }

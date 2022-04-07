@@ -1,9 +1,16 @@
 package UserUI;
+import com.company.DataSeed;
+import com.company.Main;
+import com.company.Patron;
+
 import java.util.Scanner;
+
 
 public class ConsoleUi {
     private String Name;
     private Scanner scanner = new Scanner(System.in);
+    private DataSeed dataSeed = new DataSeed();
+
 
     public ConsoleUi(String name)
     {
@@ -13,6 +20,7 @@ public class ConsoleUi {
     {
         System.out.println(String.format("Welcome to %s Library",Name));
     }
+
 
     private void CheckInBook()
     {
@@ -25,9 +33,29 @@ public class ConsoleUi {
         System.out.println("You are checking out a book");
     }
 
+    private void AddNewBook()
+    {
+        System.out.println("You adding a new book");
+    }
+
     private void AddNewPatron()
     {
-        System.out.println("You adding a new patron");
+        System.out.println("First Name: \n");
+        String first = scanner.nextLine();
+
+        System.out.println("Last Name: \n");
+        String last = scanner.nextLine();
+
+        dataSeed.AddPatron(first,last);
+
+        System.out.println("Patron added");
+
+        MainMenu();
+    }
+
+    private void AddPremuimPatron()
+    {
+        System.out.println("You are adding a premium patron");
     }
 
     private void AddData()
@@ -38,22 +66,22 @@ public class ConsoleUi {
         switch (decision)
         {
             case "1":
-                System.out.println("Your adding a new Patron");
+
+                AddNewPatron();
                 break;
             case "2":
-                System.out.println("Your adding a new Book");
+                AddNewBook();
                 break;
             case "3":
-                System.out.println("Your adding a Premium Patron");
+                AddPremuimPatron();
                 break;
             case "4":
-                System.out.println("Your adding a Checking Out a book");
+                CheckOutBook();
                 break;
             case "5":
-                System.out.println("Your adding a Checking In a book");
+                CheckInBook();
                 break;
             default:
-                System.out.println("Please Enter a Valid Input");
                 MainMenu();
                 break;
 
@@ -63,13 +91,50 @@ public class ConsoleUi {
 
     public void ViewReport()
     {
-        System.out.println("You are viewing the reports");
+        System.out.println("1.View Check Outs \n2.View Check In \n3.View Inventory \n4.Go Back");
+
+
+        switch (scanner.nextLine())
+        {
+            case "1":
+                System.out.println("You are viewing current check outs");
+                break;
+            case "2":
+                System.out.println("You are viewing current check Ins");
+                break;
+            case "3":
+                System.out.println("You are viewing Inventory");
+                break;
+            case "4":
+                AddData();
+                break;
+            default:
+                System.out.println("Please select one of the selections by number");
+                ViewReport();
+
+
+        }
     }
+
+    public void ViewPatronList()
+    {
+
+        for (Patron patron : dataSeed.GetAllPatrons()) {
+            System.out.println(String.format("Id:%s \nFirst:%s \nLast:%s",patron.getId(),patron.getFirstName(),patron.getLastName()));
+            System.out.println("------------------------------------");
+        }
+
+        MainMenu();
+    }
+
+
+
 
     public void MainMenu()
     {
         System.out.print("1.Input Data \n2.View Report \n");
         String decision = scanner.nextLine();
+
 
         switch (decision)
         {
@@ -79,7 +144,7 @@ public class ConsoleUi {
                 break;
             case "2":
                 System.out.println("View Reports");
-                ViewReport();
+                ViewPatronList();
                 break;
 
             default:
@@ -89,7 +154,21 @@ public class ConsoleUi {
 
 
         }
+
+
+
     }
+
+    public void Init()
+    {
+        dataSeed.SeedData();
+
+        Welcome();
+         MainMenu();
+
+    }
+
+
 
 
 }
