@@ -1,17 +1,17 @@
 package GenerateReports;
 
-import com.company.Books;
-import com.company.Patron;
+import Business.Books;
+import Business.PatronLogic;
 import com.company.PremiumPatron;
 
 
 
 public class Report {
-    Patron reportPatron;
+    PatronLogic reportPatron;
     PremiumPatron reportPremiumPatron;
     Books reportBooks;
 
-    public Report(Patron patron, PremiumPatron premiumPatron, Books books)
+    public Report(PatronLogic patron, PremiumPatron premiumPatron, Books books)
     {
         reportPatron = patron;
         reportPremiumPatron = premiumPatron;

@@ -1,4 +1,7 @@
-package com.company;
+package DAL;
+
+import Business.Books;
+import Models.Patron;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
@@ -18,11 +21,11 @@ public class DataSeed {
         UUID uuid = UUID.randomUUID();
 
 
-        patronList.add(new Patron(0,"Raul","Rodriguez", LocalDate.now()));
-        patronList.add(new Patron(1,"Norma","Hendricks", LocalDate.now()));
-        patronList.add(new Patron(2,"Nico","Rodriguez", LocalDate.now()));
-        patronList.add(new Patron(3,"Stephanie","Vasquez", LocalDate.now()));
-        patronList.add(new Patron(4,"Miguel","Jimenez", LocalDate.now()));
+        patronList.add(new Patron(0,false,"Raul","Rodriguez", LocalDate.now()));
+        patronList.add(new Patron(1,true,"Norma","Hendricks", LocalDate.now()));
+        patronList.add(new Patron(2,true,"Nico","Rodriguez", LocalDate.now()));
+        patronList.add(new Patron(3,false,"Stephanie","Vasquez", LocalDate.now()));
+        patronList.add(new Patron(4,false,"Miguel","Jimenez", LocalDate.now()));
 
         booksList.add(new Books(0,"Harry Potter and the chambers of secrets","Jk Rowling","Fantasy",uuid.toString(),4));
         booksList.add(new Books(1,"House Of Mars","Thomas Whittle","Fiction",uuid.toString(),10));
@@ -36,11 +39,11 @@ public class DataSeed {
         return patronList;
     }
 
-    public void AddPatron(String first, String last)
+    public void AddPatron(String first, String last,boolean isPremium)
     {
         // Add id dynamically
         int id = (patronList.size() - 1) + 1;
-        patronList.add(new Patron(id,first,last,LocalDate.now()));
+        patronList.add(new Patron(id,isPremium,first,last,LocalDate.now()));
     }
 
     public void DeletePatron(int id)

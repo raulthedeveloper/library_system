@@ -1,4 +1,4 @@
-package GenerateReports;
+package Models;
 
 import java.time.LocalDate;
 

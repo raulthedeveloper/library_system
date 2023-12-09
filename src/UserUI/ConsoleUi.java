@@ -1,7 +1,6 @@
 package UserUI;
-import com.company.DataSeed;
-import com.company.Main;
-import com.company.Patron;
+import DAL.DataSeed;
+import Models.Patron;
 
 import java.util.Scanner;
 
@@ -46,7 +45,7 @@ public class ConsoleUi {
         System.out.println("Last Name: \n");
         String last = scanner.nextLine();
 
-        dataSeed.AddPatron(first,last);
+        dataSeed.AddPatron(first,last,false);
 
         System.out.println("Patron added");
 
@@ -120,7 +119,7 @@ public class ConsoleUi {
     {
 
         for (Patron patron : dataSeed.GetAllPatrons()) {
-            System.out.println(String.format("Id:%s \nFirst:%s \nLast:%s",patron.getId(),patron.getFirstName(),patron.getLastName()));
+            System.out.println(String.format("Id:%s \nFirst:%s \nLast:%s",patron.Id,patron.FirstName,patron.LastName));
             System.out.println("------------------------------------");
         }
 

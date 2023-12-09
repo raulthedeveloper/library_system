@@ -1,13 +1,14 @@
 package GenerateReports;
 
 
-import com.company.Books;
-import com.company.Patron;
+import Business.Books;
+import Business.PatronLogic;
+import Models.ReportModel;
 import com.company.PremiumPatron;
 
 public class CheckInReport extends Report {
 
-    public CheckInReport(Patron patron, PremiumPatron premiumPatron, Books books) {
+    public CheckInReport(PatronLogic patron, PremiumPatron premiumPatron, Books books) {
         super(patron, premiumPatron, books);
     }
 
